@@ -20,8 +20,9 @@ read_file(Device, Class, Line, interface) -> Class; % todo: impl
 read_file(Device, Class, Line, method_param) -> Class; % todo: impl
 read_file(Device, Class, Line, method_return) -> Class; % todo: impl
 
-%% find something inside
+%% find something inside, sandwiched by prefix & suffix
 find_array([], _, _) -> not_found;
+find_array([Prefix|[Found|_]], Prefix, "") -> Found;
 find_array([Prefix|[Found|[Suffix|_]]], Prefix, Suffix) -> Found;
 find_array([_|Tail], Prefix, Suffix) -> find_array(Tail, Prefix, Suffix).
 
